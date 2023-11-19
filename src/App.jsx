@@ -1,7 +1,11 @@
 import { useDispatch } from 'react-redux';
 import './App.css'
+// Import our custom CSS and JS
+import './scss/styles.scss'
+import * as bootstrap from 'bootstrap'
 import InputForm from './components/InputForm';
 import { setAnswer } from "./app/mainSlice";
+import SubmitResults from './components/SubmitResults';
 
 function App() {
 
@@ -19,8 +23,9 @@ function App() {
   return (
     <>
       {randNum}
-      <audio src={fullURL}></audio>
+      {/* <audio src={fullURL}></audio> */}
       <InputForm />
+      <SubmitResults />
     </>
   )
 }
