@@ -7,10 +7,8 @@ export default function SubmitResults() {
     const userGuess = useSelector((state) => state.main.userGuess);
 
     return(
-        <>
-        {answer}
-        <br />
-        {userGuess}
-        </>
+        <div>
+            
+        </div>
     )
 }

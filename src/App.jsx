@@ -6,6 +6,7 @@ import * as bootstrap from 'bootstrap'
 import InputForm from './components/InputForm';
 import { setAnswer } from "./app/mainSlice";
 import SubmitResults from './components/SubmitResults';
+import Header from './components/Header';
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
 
   return (
     <>
-      {randNum}
-      {/* <audio src={fullURL}></audio> */}
+      <Header />
+      Random Number: {randNum}
       <InputForm />
       <SubmitResults />
     </>
