@@ -1,32 +1,47 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css'
 // Import our custom CSS and JS
 import './scss/styles.scss'
 import * as bootstrap from 'bootstrap'
 import InputForm from './components/InputForm';
-import { setAnswer } from "./app/mainSlice";
+import { generateAnswer } from "./app/mainSlice";
 import SubmitResults from './components/SubmitResults';
 import Header from './components/Header';
+import { useEffect } from 'react';
 
 function App() {
 
   const dispatch = useDispatch();
+  const answer = useSelector((state) => state.main.answer);
 
   const baseURL = "https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName=Leila22k?inputText=";
-  const randNum = Math.ceil(Math.random() * 50);
+  // const randNum = Math.ceil(Math.random() * 50);
+  let randNum;
   const rand64 = btoa(randNum);
-  const fullURL = baseURL + rand64
+  const fullURL = baseURL + rand64;
 
-  dispatch(setAnswer(randNum));
+  console.log(randNum)
+  console.log(typeof (randNum))
 
-  console.log(fullURL)
+  console.log(fullURL);
+
+  useEffect(() => {
+    if (answer === null) {
+      randNum = dispatch(generateAnswer());
+      console.log(randNum)
+    }
+  }, []);
 
   return (
     <>
-      <Header />
-      Random Number: {randNum}
-      <InputForm />
-      <SubmitResults />
+      <div className='container'>
+        <div>
+          <Header />
+          Random Number: {answer}
+          <InputForm />
+          <SubmitResults />
+        </div>
+      </div>
     </>
   )
 }

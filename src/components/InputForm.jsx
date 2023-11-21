@@ -13,11 +13,13 @@ export default function InputForm() {
     }
 
     return (
-        <form onSubmit={(event) => handleSubmit(event)}>
-            <div className="input-group">
-                <input className="" name="userAnswer" />
-            </div>
-            <button className="btn btn-info" type="submit">Submit</button>
-        </form>
+        <div>
+            <form onSubmit={(event) => handleSubmit(event)}>
+                <div className="input-group">
+                    <input className="" name="userAnswer" />
+                </div>
+                <button className="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
     )
 }

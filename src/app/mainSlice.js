@@ -6,6 +6,7 @@ const initialState = {
     roundNumberCount: 1,
     totalRoundCount: 10,
     rightAnswerCount: 0,
+    answerResponse: "",
 };
 
 
@@ -13,24 +14,26 @@ export const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        setAnswer: (state, action) => {
-            state.answer = action.payload;
+        generateAnswer: (state) => {
+            state.answer = Math.ceil(Math.random() * 50);
         },
         setUserGuess: (state, action) => {
             state.userGuess = action.payload;
+
+            if (state.answer == state.userGuess) {
+                state.answerResponse = "Correct";
+                state.rightAnswerCount = state.rightAnswerCount + 1;
+            } else {
+                state.answerResponse = "Incorrect";
+            }
+
+
+            state.answer = Math.ceil(Math.random() * 50);
+            state.roundNumberCount = state.roundNumberCount + 1;
         },
-        setRoundNumberCount: (state, action) => {
-            state.roundNumberCount = action.payload;
-        },
-        setRightAnswerCount: (state, action) => {
-            state.rightAnswerCount = action.payload;
-        },
-        setTotalRoundCount: (state, action) => {
-            state.totalRoundCount = action.payload;
-        }
     }
 })
 
-export const { setAnswer, setUserGuess } = mainSlice.actions;
+export const { generateAnswer, setUserGuess, setRoundNumberCount } = mainSlice.actions;
 
 export default mainSlice.reducer;
