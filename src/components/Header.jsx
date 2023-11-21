@@ -9,6 +9,9 @@ export default function Header() {
 
     return (
         <div>
+            <div className="page-title">
+                aRGaaM
+            </div>
             Round: {currentRoundNum}
             <br />
             Score: {userScore}/{totalRoundNum}

@@ -8,6 +8,7 @@ import { generateAnswer } from "./app/mainSlice";
 import SubmitResults from './components/SubmitResults';
 import Header from './components/Header';
 import { useEffect } from 'react';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -35,11 +36,12 @@ function App() {
   return (
     <>
       <div className='container'>
-        <div>
+        <div className='col-6'>
           <Header />
           Random Number: {answer}
           <InputForm />
           <SubmitResults />
+          <Footer />
         </div>
       </div>
     </>

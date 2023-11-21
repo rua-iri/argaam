@@ -1,2 +1,37 @@
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+
+
+@font-face {
+    font-family: "HowToDoSomething";
+    src: url(../assets/fonts/HowToDoSomething-7pKl.ttf);
+}
+
+
+.page-title {
+    font-family: "HowToDoSomething";
+    font-size: 4rem;
+}
+
+
+.correct-answer {
+    animation: rainbowEffect 1s infinite;
+}
+
+@keyframes rainbowEffect {
+    0% {
+        background-color: #1a9ece;
+    }
+    25% {
+        background-color: #36c3df;
+    }
+    50% {
+        background-color: #ef4a2e;
+    }
+    75% {
+        background-color: #f9ab56;
+    }
+    100% {
+        background-color: #faed23;
+    }
+}
