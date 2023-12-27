@@ -27,9 +27,14 @@ export const mainSlice = createSlice({
                 state.answerResponse = "Incorrect";
             }
 
+            // check if round limit has elapsed
+            if (state.roundNumberCount===state.totalRoundCount) {
+                // TODO handle game completion
+            } else {
+                state.answer = Math.ceil(Math.random() * 50);
+                state.roundNumberCount = state.roundNumberCount + 1;    
+            }
 
-            state.answer = Math.ceil(Math.random() * 50);
-            state.roundNumberCount = state.roundNumberCount + 1;
         },
     }
 })
