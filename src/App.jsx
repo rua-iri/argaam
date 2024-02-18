@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css'
 // Import our custom CSS and JS
 import './scss/styles.scss'
-import * as bootstrap from 'bootstrap'
 import InputForm from './components/InputForm';
 import { generateAnswer } from "./app/mainSlice";
 import SubmitResults from './components/SubmitResults';
@@ -19,12 +18,12 @@ function App() {
   // const randNum = Math.ceil(Math.random() * 50);
   let randNum;
   const rand64 = btoa(randNum);
-  const fullURL = baseURL + rand64;
+  // const fullURL = baseURL + rand64;
+  // console.log(fullURL);
 
   console.log(randNum)
   console.log(typeof (randNum))
 
-  console.log(fullURL);
 
   useEffect(() => {
     if (answer === null) {
@@ -35,9 +34,9 @@ function App() {
 
   return (
     <>
-      <div className='container'>
-        <div className='col-6'>
-          <Header />
+      <div className=''>
+        <div className=''>
+          {/* <Header /> */}
           Random Number: {answer}
           <InputForm />
           <SubmitResults />

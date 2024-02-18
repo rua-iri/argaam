@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         <div>
-            <div className="page-title">
+            <div className="app-title">
                 aRGaaM
             </div>
             Round: {currentRoundNum}

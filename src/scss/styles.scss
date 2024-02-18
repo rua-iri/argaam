@@ -1,6 +1,6 @@
-// Import all of Bootstrap's CSS
-@import "bootstrap/scss/bootstrap";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
     font-family: "HowToDoSomething";
@@ -8,7 +8,7 @@
 }
 
 
-.page-title {
+.app-title {
     font-family: "HowToDoSomething";
     font-size: 4rem;
 }
