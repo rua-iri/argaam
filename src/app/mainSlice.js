@@ -28,11 +28,12 @@ export const mainSlice = createSlice({
             }
 
             // check if round limit has elapsed
-            if (state.roundNumberCount===state.totalRoundCount) {
+            if (state.roundNumberCount === state.totalRoundCount) {
+                alert('asdf')
                 // TODO handle game completion
             } else {
                 state.answer = Math.ceil(Math.random() * 50);
-                state.roundNumberCount = state.roundNumberCount + 1;    
+                state.roundNumberCount = state.roundNumberCount + 1;
             }
 
         },

@@ -4,10 +4,10 @@ import './App.css'
 import './scss/styles.scss'
 import InputForm from './components/InputForm';
 import { generateAnswer } from "./app/mainSlice";
-import SubmitResults from './components/SubmitResults';
 import Header from './components/Header';
 import { useEffect } from 'react';
 import Footer from './components/Footer';
+import ScoreBoard from './components/ScoreBoard';
 
 function App() {
 
@@ -24,7 +24,6 @@ function App() {
   console.log(randNum)
   console.log(typeof (randNum))
 
-
   useEffect(() => {
     if (answer === null) {
       randNum = dispatch(generateAnswer());
@@ -34,15 +33,14 @@ function App() {
 
   return (
     <>
-      <div className=''>
-        <div className=''>
-          {/* <Header /> */}
-          Random Number: {answer}
+      <Header />
+      <div className='flex justify-center'>
+        <div className='flex-col items-center justify-center px-5 py-10 border'>
+          <ScoreBoard />
           <InputForm />
-          <SubmitResults />
-          <Footer />
         </div>
       </div>
+      <Footer />
     </>
   )
 }
