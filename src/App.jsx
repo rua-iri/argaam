@@ -37,9 +37,7 @@ function App() {
         </div>
       </div>
 
-      <div className='my-3 text-center text-red-600'>
-        {answer}
-      </div>
+      {/* <div className='my-3 text-center text-red-600'>{answer}</div> */}
 
       <Footer />
 
