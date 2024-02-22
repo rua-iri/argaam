@@ -2,15 +2,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserGuess } from "../app/mainSlice";
 import { BiVolumeFull } from "react-icons/bi";
 import { IconContext } from "react-icons";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function InputForm() {
 
     const dispatch = useDispatch();
     const formRef = useRef();
     const inputRef = useRef();
-    const currentRoundNum = useSelector((state) => state.main.roundNumberCount);
+    const audioRef = useRef();
+    const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
     const totalRoundNum = useSelector((state) => state.main.totalRoundCount);
+    const answer = useSelector((state) => state.main.answer);
+
+    const rand64 = btoa(answer);
+    const fullURL = `https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName=Leila22k?inputText=${rand64}`;
+
+    // console.log("answer: ", answer)
+    // console.log("rand64: ", rand64)
+    // console.log(fullURL);
+
+    function playAudio() {
+        if (!answer) return;
+        audioRef.current.play()
+    }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -22,18 +36,24 @@ export default function InputForm() {
             return;
         }
 
-        console.log("User Answer: ", event.target.userAnswer.value)
+        // console.log("User Answer: ", event.target.userAnswer.value)
 
         dispatch(setUserGuess(event.target.userAnswer.value));
         formRef.current.reset();
         inputRef.current.focus();
     }
 
+    useEffect(() => {
+        playAudio();
+    }, [fullURL])
+
     return (
-        <div>
+        <div className="px-5 pb-10">
             <div className="">
                 <div className="flex">
-                    <div className="bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 flex items-center rounded-3xl m-3 p-3">
+                    <div 
+                    className="bg-gradient-to-br from-limeGreen from-20% to-softYellow flex items-center rounded-3xl m-3 p-3 ring-1 ring-gray-300 cursor-pointer"
+                    onClick={() => playAudio()}>
                         <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900" }}>
                             <BiVolumeFull />
                         </IconContext.Provider>
@@ -51,7 +71,7 @@ export default function InputForm() {
                                     required />
                             </div>
                             <button
-                                className="my-3 text-gray-900 bg-gradient-to-bl from-red-200 via-red-300 to-yellow-200 px-5 py-2.5 rounded-lg text-4xl font-light hover:bg-gradient-to-tr focus:ring-4 focus:outline-none focus:ring-red-50"
+                                className="my-3 text-gray-900 ring-1 ring-gray-300 bg-gradient-to-bl from-limeGreen from-20% to-softYellow px-5 py-2.5 rounded-lg text-4xl font-light hover:bg-gradient-to-tr focus:ring-4 focus:outline-none focus:ring-red-50"
                                 type="submit">
                                 Submit
                             </button>
@@ -59,6 +79,7 @@ export default function InputForm() {
                     </div>
                 </div>
             </div>
+            <audio ref={audioRef} src={fullURL}></audio>
         </div>
     )
 }

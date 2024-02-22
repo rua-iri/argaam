@@ -7,9 +7,12 @@
     src: url(../assets/fonts/HowToDoSomething-7pKl.ttf);
 }
 
+body {
+    margin: 0;
+}
+
 .app-title {
     font-family: "HowToDoSomething";
-    font-size: 4rem;
 }
 
 .correct-answer {

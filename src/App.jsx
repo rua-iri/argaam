@@ -8,34 +8,30 @@ import Header from './components/Header';
 import { useEffect } from 'react';
 import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
+import GameOver from './components/GameOver';
 
 function App() {
 
   const dispatch = useDispatch();
+  const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
+  const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
+
+
   const answer = useSelector((state) => state.main.answer);
 
-  const baseURL = "https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName=Leila22k?inputText=";
-  // const randNum = Math.ceil(Math.random() * 50);
-  let randNum;
-  const rand64 = btoa(randNum);
-  // const fullURL = baseURL + rand64;
-  // console.log(fullURL);
-
-  console.log(randNum)
-  console.log(typeof (randNum))
 
   useEffect(() => {
     if (answer === null) {
-      randNum = dispatch(generateAnswer());
-      console.log(randNum)
+      dispatch(generateAnswer());
+      // console.log(answer)
     }
   }, []);
 
   return (
     <>
       <Header />
-      <div className='flex justify-center'>
-        <div className='flex-col items-center justify-center px-5 py-10 border'>
+      <div className='flex justify-center my-20'>
+        <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
           <ScoreBoard />
           <InputForm />
         </div>
@@ -46,6 +42,11 @@ function App() {
       </div>
 
       <Footer />
+
+      {currentRoundNum >= totalRoundCount
+        ? <GameOver />
+        : ""}
+
     </>
   )
 }
