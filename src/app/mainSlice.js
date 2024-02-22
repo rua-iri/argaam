@@ -7,6 +7,7 @@ const initialState = {
     totalRoundCount: 10,
     rightAnswerCount: 0,
     answerResponse: "",
+    maxAnswer: 50,
 };
 
 
@@ -15,7 +16,7 @@ export const mainSlice = createSlice({
     initialState,
     reducers: {
         generateAnswer: (state) => {
-            state.answer = Math.ceil(Math.random() * 50);
+            state.answer = Math.ceil(Math.random() * state.maxAnswer);
         },
         setUserGuess: (state, action) => {
             state.userGuess = action.payload;
@@ -29,10 +30,11 @@ export const mainSlice = createSlice({
 
             // check if round limit has elapsed
             if (state.roundNumberCount === state.totalRoundCount) {
-                alert('asdf')
+                alert('Game Complete')
                 // TODO handle game completion
+
             } else {
-                state.answer = Math.ceil(Math.random() * 50);
+                state.answer = Math.ceil(Math.random() * state.maxAnswer);
                 state.roundNumberCount = state.roundNumberCount + 1;
             }
 

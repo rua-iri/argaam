@@ -15,11 +15,15 @@ export default function InputForm() {
     function handleSubmit(event) {
         event.preventDefault();
 
+        // check that game is not over
         if (currentRoundNum >= totalRoundNum) {
+            inputRef.current.disabled = true;
+            formRef.current.reset();
             return;
         }
 
-        console.log(event.target.userAnswer.value)
+        console.log("User Answer: ", event.target.userAnswer.value)
+
         dispatch(setUserGuess(event.target.userAnswer.value));
         formRef.current.reset();
         inputRef.current.focus();
@@ -30,7 +34,7 @@ export default function InputForm() {
             <div className="">
                 <div className="flex">
                     <div className="bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 flex items-center rounded-3xl m-3 p-3">
-                        <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900 animate-ping" }}>
+                        <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900" }}>
                             <BiVolumeFull />
                         </IconContext.Provider>
                     </div>
