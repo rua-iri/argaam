@@ -30,6 +30,7 @@ function App() {
   return (
     <>
       <Header />
+
       <div className='flex justify-center my-20'>
         <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
           <ScoreBoard />
@@ -44,6 +45,10 @@ function App() {
       {currentRoundNum >= totalRoundCount
         ? <GameOver />
         : ""}
+
+      <div className="absolute top-0 bottom-0 z-0">
+        <img className="block h-full w-full object-cover" src="/background-desktop.svg" alt="" />
+      </div>
 
     </>
   )

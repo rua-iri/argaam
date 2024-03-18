@@ -19,7 +19,7 @@ export default function GameOver() {
                     <div className="m-auto">
                         <div className='flex justify-center my-20 bg-white'>
                             <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
-                                <div className="flex justify-center mb-12 border-b border-slate-300 bg-gradient-to-b from-limeGreen from-50% to-softYellow px-20 py-5">
+                                <div className="flex justify-center mb-12 border-b border-slate-300 bg-limeGreenpx-20 py-5">
                                     Game Over
                                 </div>
 
@@ -30,7 +30,7 @@ export default function GameOver() {
                                         </div>
                                         <div>
                                             <button
-                                                className="py-2 px-4 bg-gradient-to-b from-softOrange from-60% to-softYellow rounded-md border border-slate-300"
+                                                className="py-2 px-4 bg-softOrange rounded-md border border-slate-300"
                                                 onClick={() => reset()}>
                                                 Restart
                                             </button>
