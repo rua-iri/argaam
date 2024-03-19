@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        splat1: "url('/assets/splat1.png')",
+        splat2: "url('/assets/splat2.png')",
+        splat3: "url('/assets/splat3.png')",
+      },
       colors: {
         limeGreen: "#CDFADB",
         softYellow: "#F6FDC3",

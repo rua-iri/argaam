@@ -28,20 +28,14 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Header />
 
-      <div className="relative flex-grow h-full border border-red-500">
-        <div className='flex justify-center my-32'>
+      <div className="relative flex-grow border">
+        <div className='flex justify-center my-32 relative z-10'>
           <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
             <ScoreBoard />
             <InputForm />
-          </div>
-        </div>
-
-        <div className="flex-grow">
-          <div className="absolute top-0 bottom-0 mx-auto left-1/2 transform -translate-x-1/2 z-0 w-full max-w-screen">
-            <img className="w-full h-full object-cover" src="/background-desktop.svg" alt="background image" />
           </div>
         </div>
       </div>
@@ -54,10 +48,7 @@ function App() {
         ? <GameOver />
         : ""}
 
-
-
-
-    </>
+    </div>
   )
 }
 

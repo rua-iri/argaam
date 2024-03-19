@@ -44,12 +44,12 @@ export default function InputForm() {
     }, [fullURL])
 
     return (
-        <div className="px-5 pb-10">
+        <div className="px-5 pb-10 pt-12 bg-white">
             <div className="">
                 <div className="flex">
-                    <div 
-                    className="flex items-center rounded-3xl m-3 p-3 bg-limeGreen ring-1 ring-gray-300 cursor-pointer"
-                    onClick={() => playAudio()}>
+                    <div
+                        className="flex items-center rounded-3xl m-3 p-3 bg-limeGreen ring-1 ring-gray-300 cursor-pointer"
+                        onClick={() => playAudio()}>
                         <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900" }}>
                             <BiVolumeFull />
                         </IconContext.Provider>
@@ -75,7 +75,8 @@ export default function InputForm() {
                     </div>
                 </div>
             </div>
-            <audio ref={audioRef} src={fullURL}></audio>
+            {/* <audio ref={audioRef} src={fullURL}></audio> */}
+            <audio ref={audioRef} src=""></audio>
         </div>
     )
 }

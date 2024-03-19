@@ -8,10 +8,12 @@ export default function Header() {
         <div className="w-full py-3 border-b border-slate-600 text-center bg-limeGreen">
             <div className="flex justify-between items-center">
                 <div className="md:mx-3 md:w-12"></div>
-                <h1 className="app-title select-none text-5xl md:text-7xl md:mx-3">
-                    aRGaaM
-                </h1>
-                <div className="mr-3 md:mx-3">
+                <div className="px-7 md:px-8 bg-splat1 bg-contain">
+                    <h1 className="app-title select-none text-5xl md:text-7xl md:mx-3">
+                        aRGaaM
+                    </h1>
+                </div>
+                <div className="mr-3 md:px-3  bg-splat3 bg-cover p-3">
                     <button onClick={() => alert("This will open a menu")}>
                         <IconContext.Provider value={{ className: "h-12 w-12 md:h-12 md:w-12 text-slate-900" }}>
                             <IoSettings />
