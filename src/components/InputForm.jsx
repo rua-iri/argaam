@@ -17,10 +17,6 @@ export default function InputForm() {
     const rand64 = btoa(answer);
     const fullURL = `https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName=Leila22k?inputText=${rand64}`;
 
-    // console.log("answer: ", answer)
-    // console.log("rand64: ", rand64)
-    // console.log(fullURL);
-
     function playAudio() {
         if (!answer) return;
         audioRef.current.play()
@@ -71,7 +67,7 @@ export default function InputForm() {
                                     required />
                             </div>
                             <button
-                                className="my-3 text-gray-900 ring-1 ring-gray-300 bg-limeGreen px-5 py-2.5 rounded-lg text-4xl font-light hover:bg-gradient-to-tr focus:ring-4 focus:outline-none focus:ring-red-50"
+                                className="my-3 text-gray-900 ring-1 ring-gray-300 bg-limeGreen px-5 py-2.5 rounded-lg text-4xl font-light hover:bg-softYellow focus:bg-softYellow focus:ring-4 focus:outline-none focus:ring-red-50"
                                 type="submit">
                                 Submit
                             </button>
