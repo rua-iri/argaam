@@ -14,7 +14,7 @@ export default function GameOver() {
 
     return (
         <>
-            <div className="absolute top-0 w-screen h-screen backdrop-blur-md">
+            <div className="absolute z-20 top-0 w-screen h-screen backdrop-blur-md">
                 <div className="flex h-screen">
                     <div className="m-auto">
                         <div className='flex justify-center my-20 bg-white'>
