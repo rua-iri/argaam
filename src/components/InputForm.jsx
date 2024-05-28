@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setUserGuess } from "../app/mainSlice";
-import { BiVolumeFull } from "react-icons/bi";
+import { TiVolumeUp } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import { useEffect, useRef } from "react";
 
@@ -14,8 +14,7 @@ export default function InputForm() {
     const totalRoundNum = useSelector((state) => state.main.totalRoundCount);
     const answer = useSelector((state) => state.main.answer);
 
-    const rand64 = btoa(answer);
-    const fullURL = `https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName=Leila22k?inputText=${rand64}`;
+    const fullPath = `/audio/${answer}.mp3`
 
     function playAudio() {
         if (!answer) return;
@@ -41,19 +40,19 @@ export default function InputForm() {
 
     useEffect(() => {
         playAudio();
-    }, [fullURL])
+    }, [fullPath])
 
     return (
         <div className="px-5 pb-10 pt-12 bg-white">
             <div className="">
                 <div className="flex">
-                    <div
-                        className="flex items-center rounded-3xl m-3 p-3 bg-limeGreen ring-1 ring-gray-300 cursor-pointer"
+                    <button
+                        className="flex items-center rounded-3xl m-3 p-3 bg-limeGreen ring-1 ring-gray-300 group"
                         onClick={() => playAudio()}>
-                        <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900" }}>
-                            <BiVolumeFull />
+                        <IconContext.Provider value={{ className: "h-20 w-20 text-slate-900 group-hover:stroke-[0.2]" }}>
+                            <TiVolumeUp />
                         </IconContext.Provider>
-                    </div>
+                    </button>
                     <div className="m-3">
                         <form ref={formRef} onSubmit={(event) => handleSubmit(event)}>
                             <div className=" my-3">
@@ -75,8 +74,7 @@ export default function InputForm() {
                     </div>
                 </div>
             </div>
-            {/* <audio ref={audioRef} src={fullURL}></audio> */}
-            <audio ref={audioRef} src=""></audio>
+            <audio ref={audioRef} src={fullPath}></audio>
         </div>
     )
 }
