@@ -5,7 +5,7 @@ import './scss/styles.scss'
 import InputForm from './components/InputForm';
 import { generateAnswer } from "./app/mainSlice";
 import Header from './components/Header';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 import GameOver from './components/GameOver';
@@ -16,6 +16,8 @@ function App() {
   const dispatch = useDispatch();
   const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
   const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
+
+  const settingsRef = useRef();
 
 
   const answer = useSelector((state) => state.main.answer);
@@ -30,11 +32,11 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen">
-      <Header />
+      <Header settingsRef={settingsRef} />
 
       <div className="relative flex-grow border">
         <div className='flex justify-center my-32 relative z-10'>
-          <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
+          <div className='flex-col items-center justify-center border border-slate-300 shadow-xl rounded-md'>
             <ScoreBoard />
             <InputForm />
           </div>
@@ -49,9 +51,7 @@ function App() {
         ? <GameOver />
         : ""}
 
-      {false ?
-        <Settings />
-        : ""}
+        <Settings settingsRef={settingsRef} />
 
     </div>
   )

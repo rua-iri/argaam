@@ -1,8 +1,8 @@
 import { IconContext } from "react-icons";
-import { IoSettings } from "react-icons/io5";
+import { TbSettings } from "react-icons/tb";
 
 
-export default function Header() {
+export default function Header({settingsRef}) {
 
     return (
         <div className="w-full py-3 border-b border-slate-600 text-center bg-limeGreen">
@@ -13,10 +13,10 @@ export default function Header() {
                         aRGaaM
                     </h1>
                 </div>
-                <div className="mr-3 md:px-3  bg-splat3 bg-cover p-3">
-                    <button onClick={() => alert("This will open a menu")}>
-                        <IconContext.Provider value={{ className: "h-12 w-12 md:h-12 md:w-12 text-slate-900" }}>
-                            <IoSettings />
+                <div className="mr-3 md:px-3 bg-splat3 bg-cover p-3">
+                    <button className="group" onClick={() => settingsRef.current.showModal()}>
+                        <IconContext.Provider value={{ className: "h-12 w-12 text-black stroke-[1] group-hover:stroke-[1.25]" }}>
+                            <TbSettings />
                         </IconContext.Provider>
                     </button>
                 </div>

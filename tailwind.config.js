@@ -1,3 +1,5 @@
+import daisyui from 'daisyui';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -19,6 +21,20 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    daisyui
+  ],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#CDFADB",
+          secondary: "#FF8080"
+        },
+      },
+    ],
+
+  },
 }
 
