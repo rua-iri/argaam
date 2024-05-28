@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 import GameOver from './components/GameOver';
+import Settings from './components/Settings';
 
 function App() {
 
@@ -46,6 +47,10 @@ function App() {
 
       {currentRoundNum >= totalRoundCount
         ? <GameOver />
+        : ""}
+
+      {false ?
+        <Settings />
         : ""}
 
     </div>
