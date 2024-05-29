@@ -2,7 +2,7 @@ import { IconContext } from "react-icons";
 import { TbSettings } from "react-icons/tb";
 
 
-export default function Header({settingsRef}) {
+export default function Header({ settingsRef }) {
 
     return (
         <div className="w-full py-3 border-b border-slate-600 text-center bg-limeGreen">

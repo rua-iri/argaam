@@ -1,8 +1,21 @@
-import { useRef } from "react"
+import { useDispatch } from "react-redux"
 
 
 export default function Settings({ settingsRef }) {
 
+    const dispatch = useDispatch();
+
+
+    // TODO: include components which allow the user to control some/all of the following
+    // - number of rounds
+    // - max number
+    // - voice speed
+    
+
+    // TODO: if the user clicks save then the values should be 
+    // changed in the store and the game should be reset
+    // otherwise the 
+    
 
     return (
         <dialog className="modal" ref={settingsRef}>

@@ -16,7 +16,7 @@ export default function ScoreBoard() {
                     Score: {userScore}/{totalRoundNum}
                 </span>
             </div>
-            <div>
+            <div className="mt-2">
                 <progress
                     className="progress w-full"
                     value={currentRoundNum - 1}

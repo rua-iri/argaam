@@ -1,20 +1,37 @@
 import { useDispatch, useSelector } from "react-redux"
-import { generateAnswer, resetGame } from "../app/mainSlice";
+import { generateAnswer } from "../app/mainSlice";
+import { resetGame } from "../lib/utils";
 
 
-export default function GameOver() {
+export default function GameOver({ gameOverRef }) {
 
     const dispatch = useDispatch();
     const rightAnswerCount = useSelector((state) => state.main.rightAnswerCount)
 
-    function reset() {
-        dispatch(resetGame())
-        dispatch(generateAnswer());
-    }
 
     return (
         <>
-            <div className="absolute z-20 top-0 w-screen h-screen backdrop-blur-md">
+            <dialog className="modal" ref={gameOverRef} >
+                <div className="modal-box text-center">
+                    <h3 className="font-bold text-xl">
+                        Game Over
+                    </h3>
+                    <p className="py-4">
+                        You scored: {rightAnswerCount}
+                    </p>
+                    <div className="modal-action flex justify-center w-full">
+                        <form method="dialog">
+                            <button
+                                className="btn"
+                                onClick={() => resetGame(dispatch)}
+                            >
+                                Restart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+            {/* <div className="absolute z-20 top-0 w-screen h-screen backdrop-blur-md">
                 <div className="flex h-screen">
                     <div className="m-auto">
                         <div className='flex justify-center my-20 bg-white'>
@@ -41,7 +58,7 @@ export default function GameOver() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

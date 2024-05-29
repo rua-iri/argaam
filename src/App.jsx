@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 import GameOver from './components/GameOver';
 import Settings from './components/Settings';
+import Toast from './components/Toast';
 
 function App() {
 
@@ -18,6 +19,14 @@ function App() {
   const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
 
   const settingsRef = useRef();
+  const gameOverRef = useRef();
+
+  // // TODO: delete this
+  useEffect(() => {
+    if (currentRoundNum >= totalRoundCount) {
+      gameOverRef.current.showModal();
+    }
+  }, [currentRoundNum])
 
 
   const answer = useSelector((state) => state.main.answer);
@@ -35,7 +44,7 @@ function App() {
       <Header settingsRef={settingsRef} />
 
       <div className="relative flex-grow border">
-        <div className='flex justify-center my-32 relative z-10'>
+        <div className='flex justify-center my-32 relative'>
           <div className='flex-col items-center justify-center border border-slate-300 shadow-xl rounded-md'>
             <ScoreBoard />
             <InputForm />
@@ -43,15 +52,22 @@ function App() {
         </div>
       </div>
 
+
       {/* <div className='my-3 text-center text-red-600'>{answer}</div> */}
 
       <Footer />
 
-      {currentRoundNum >= totalRoundCount
-        ? <GameOver />
-        : ""}
+      <GameOver gameOverRef={gameOverRef} />
 
-        <Settings settingsRef={settingsRef} />
+      <Settings settingsRef={settingsRef} />
+
+
+      {/* {
+        false
+          ? <Toast />
+          
+          : ""
+      } */}
 
     </div>
   )

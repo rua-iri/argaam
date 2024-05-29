@@ -15,23 +15,31 @@ body {
     font-family: "HowToDoSomething";
 }
 
-.correct-answer {
-    // animation: rainbowEffect 1s infinite;
+@layer components {
+    .debug {
+        @apply border border-red-500;
+    }
 }
+
+
 
 @keyframes rainbowEffect {
     0% {
         background-color: #1a9ece;
     }
+
     25% {
         background-color: #36c3df;
     }
+
     50% {
         background-color: #ef4a2e;
     }
+
     75% {
         background-color: #f9ab56;
     }
+
     100% {
         background-color: #faed23;
     }

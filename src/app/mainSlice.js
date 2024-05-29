@@ -6,7 +6,6 @@ const initialState = {
     currentRoundNum: 1,
     totalRoundCount: 10,
     rightAnswerCount: 0,
-    answerResponse: "",
     maxAnswer: 99,
 };
 
@@ -22,10 +21,7 @@ export const mainSlice = createSlice({
             state.userGuess = action.payload;
 
             if (state.answer == state.userGuess) {
-                state.answerResponse = "Correct";
                 state.rightAnswerCount = state.rightAnswerCount + 1;
-            } else {
-                state.answerResponse = "Incorrect";
             }
 
             // check if round limit has elapsed
@@ -38,17 +34,17 @@ export const mainSlice = createSlice({
                 // 3. If the user's number matches the random number the user gains a point
                 // 4. Another new number is generated
                 // 5. If round limit is reached, game ends
-                
+
             } else {
                 state.answer = Math.ceil(Math.random() * state.maxAnswer);
                 state.currentRoundNum = state.currentRoundNum + 1;
             }
 
         },
-        resetGame: () => initialState
+        resetState: () => initialState
     }
 })
 
-export const { generateAnswer, setUserGuess, resetGame  } = mainSlice.actions;
+export const { generateAnswer, setUserGuess, resetState } = mainSlice.actions;
 
 export default mainSlice.reducer;
