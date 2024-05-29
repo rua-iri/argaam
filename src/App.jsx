@@ -17,19 +17,10 @@ function App() {
   const dispatch = useDispatch();
   const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
   const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
+  const answer = useSelector((state) => state.main.answer);
 
   const settingsRef = useRef();
   const gameOverRef = useRef();
-
-  // // TODO: delete this
-  useEffect(() => {
-    if (currentRoundNum >= totalRoundCount) {
-      gameOverRef.current.showModal();
-    }
-  }, [currentRoundNum])
-
-
-  const answer = useSelector((state) => state.main.answer);
 
 
   useEffect(() => {
@@ -38,6 +29,12 @@ function App() {
       // console.log(answer)
     }
   }, []);
+
+  useEffect(() => {
+    if (currentRoundNum >= totalRoundCount) {
+      gameOverRef.current.showModal();
+    }
+  }, [currentRoundNum])
 
   return (
     <div className="flex flex-col h-screen">
@@ -65,7 +62,6 @@ function App() {
       {/* {
         false
           ? <Toast />
-          
           : ""
       } */}
 

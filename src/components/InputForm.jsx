@@ -31,7 +31,7 @@ export default function InputForm() {
             return;
         }
 
-        // console.log("User Answer: ", event.target.userAnswer.value)
+        // console.log("User Answer: ", event.target.userAnswer.value);
 
         dispatch(setUserGuess(event.target.userAnswer.value));
         formRef.current.reset();
