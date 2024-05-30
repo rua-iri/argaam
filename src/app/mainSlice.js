@@ -7,6 +7,7 @@ const initialState = {
     totalRoundCount: 10,
     rightAnswerCount: 0,
     maxAnswer: 99,
+    audioSpeed: 1,
 };
 
 

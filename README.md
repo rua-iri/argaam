@@ -23,3 +23,9 @@ npm run dev
 ```bash
 npm run build
 ```
+
+
+## Use
+
+The project is currently deployed at: 
+[https://argaam.rua-iri.com/](https://argaam.rua-iri.com/)

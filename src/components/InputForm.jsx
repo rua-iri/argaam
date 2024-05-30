@@ -20,7 +20,13 @@ export default function InputForm() {
         if (!answer) return;
         if (currentRoundNum >= totalRoundCount) return;
 
+        // console.log(audioRef.current.playbackRate)
+
         audioRef.current.play()
+    }
+
+    function setPlaybackSpeed() {
+        audioRef.current.playbackRate = 0.95
     }
 
     function handleSubmit(event) {
@@ -83,7 +89,7 @@ export default function InputForm() {
                     </div>
                 </div>
             </div>
-            <audio ref={audioRef} src={fullPath}></audio>
+            <audio onCanPlay={() => setPlaybackSpeed()} ref={audioRef} src={fullPath}></audio>
         </div>
     )
 }

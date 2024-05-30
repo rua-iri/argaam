@@ -7,8 +7,15 @@
     src: url(../assets/fonts/HowToDoSomething.ttf);
 }
 
+@font-face {
+    font-family: "Raleway";
+    src: url(../assets/fonts/Raleway.ttf);
+}
+
+
 body {
     margin: 0;
+    font-family: Raleway;
 }
 
 .app-title {
