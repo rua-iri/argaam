@@ -11,13 +11,15 @@ export default function InputForm() {
     const inputRef = useRef();
     const audioRef = useRef();
     const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
-    const totalRoundNum = useSelector((state) => state.main.totalRoundCount);
+    const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
     const answer = useSelector((state) => state.main.answer);
 
     const fullPath = `/audio/${answer}.mp3`
 
     function playAudio() {
         if (!answer) return;
+        if (currentRoundNum >= totalRoundCount) return;
+
         audioRef.current.play()
     }
 
@@ -25,7 +27,7 @@ export default function InputForm() {
         event.preventDefault();
 
         // check that game is not over
-        if (currentRoundNum >= totalRoundNum) {
+        if (currentRoundNum >= totalRoundCount) {
             inputRef.current.disabled = true;
             formRef.current.reset();
             return;
@@ -39,7 +41,13 @@ export default function InputForm() {
     }
 
     useEffect(() => {
-        playAudio();
+        if (currentRoundNum == 1) {
+            setTimeout(() => {
+                playAudio();
+            }, 500);
+        } else {
+            playAudio();
+        }
     }, [fullPath])
 
     return (
