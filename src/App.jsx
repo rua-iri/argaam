@@ -15,7 +15,7 @@ import Toast from './components/Toast';
 function App() {
 
   const dispatch = useDispatch();
-  const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
+  const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
   const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
   const answer = useSelector((state) => state.main.answer);
 
@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (currentRoundNum >= totalRoundCount) {
+    if (currentRoundNum >= maxRoundCount) {
       gameOverRef.current.showModal();
     }
   }, [currentRoundNum])

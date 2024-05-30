@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function ScoreBoard() {
     const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
-    const totalRoundNum = useSelector((state) => state.main.totalRoundCount);
+    const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
     const userScore = useSelector((state) => state.main.rightAnswerCount);
 
     return (
@@ -13,14 +13,14 @@ export default function ScoreBoard() {
                     Round: {currentRoundNum}
                 </span>
                 <span className="badge badge-neutral badge-lg">
-                    Score: {userScore}/{totalRoundNum}
+                    Score: {userScore}/{maxRoundCount-1}
                 </span>
             </div>
             <div className="mt-2">
                 <progress
                     className="progress w-full"
                     value={currentRoundNum - 1}
-                    max={totalRoundNum - 1}
+                    max={maxRoundCount - 1}
                 >
                 </progress>
             </div>

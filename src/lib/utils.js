@@ -1,5 +1,5 @@
 
-import { generateAnswer, resetState } from "../app/mainSlice";
+import { generateAnswer, resetState, setAudioSpeed } from "../app/mainSlice";
 
 
 
@@ -9,14 +9,23 @@ export const resetGame = (dispatch) => {
 }
 
 
+
 export const saveSettings = (dispatch, event) => {
 
-    // const settingsData = new FormData(event.target);
+    // event.preventDefault();
 
-    console.log(event)
-    
-    alert("Saving Settings")
+    const settingsData = new FormData(event.target);
+    console.log(settingsData);
+
+    dispatch(
+        setAudioSpeed(
+            settingsData.get("audioSpeed")
+        )
+    );
+
     
 }
+
+
 
 

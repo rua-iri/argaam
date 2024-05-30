@@ -11,29 +11,27 @@ export default function InputForm() {
     const inputRef = useRef();
     const audioRef = useRef();
     const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
-    const totalRoundCount = useSelector((state) => state.main.totalRoundCount);
+    const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
     const answer = useSelector((state) => state.main.answer);
+    const audioSpeed = useSelector((state) => (state.main.audioSpeed));
 
     const fullPath = `/audio/${answer}.mp3`
 
     function playAudio() {
         if (!answer) return;
-        if (currentRoundNum >= totalRoundCount) return;
-
-        // console.log(audioRef.current.playbackRate)
-
+        if (currentRoundNum >= maxRoundCount) return;
         audioRef.current.play()
     }
 
     function setPlaybackSpeed() {
-        audioRef.current.playbackRate = 0.95
+        audioRef.current.playbackRate = audioSpeed;
     }
 
     function handleSubmit(event) {
         event.preventDefault();
 
         // check that game is not over
-        if (currentRoundNum >= totalRoundCount) {
+        if (currentRoundNum >= maxRoundCount) {
             inputRef.current.disabled = true;
             formRef.current.reset();
             return;

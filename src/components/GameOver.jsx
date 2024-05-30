@@ -6,6 +6,7 @@ export default function GameOver({ gameOverRef }) {
 
     const dispatch = useDispatch();
     const rightAnswerCount = useSelector((state) => state.main.rightAnswerCount)
+    const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
 
     return (
         <>
@@ -15,7 +16,7 @@ export default function GameOver({ gameOverRef }) {
                         Game Over
                     </h3>
                     <p className="py-6">
-                        You scored: {rightAnswerCount}
+                        You scored: {rightAnswerCount} / {maxRoundCount-1}
                     </p>
                     <div className="modal-action flex justify-center w-full">
                         <form method="dialog">

@@ -4,7 +4,7 @@ const initialState = {
     answer: null,
     userGuess: null,
     currentRoundNum: 1,
-    totalRoundCount: 10,
+    maxRoundCount: 11,
     rightAnswerCount: 0,
     maxAnswer: 99,
     audioSpeed: 1,
@@ -26,26 +26,19 @@ export const mainSlice = createSlice({
             }
 
             // check if round limit has elapsed
-            if (state.currentRoundNum >= state.totalRoundCount) {
-                alert('Game Complete')
-                // TODO handle game completion
-
-                // 1. A number is randomly generated
-                // 2. The user enters a number
-                // 3. If the user's number matches the random number the user gains a point
-                // 4. Another new number is generated
-                // 5. If round limit is reached, game ends
-
-            } else {
+            if (state.currentRoundNum < state.maxRoundCount) {
                 state.answer = Math.ceil(Math.random() * state.maxAnswer);
                 state.currentRoundNum = state.currentRoundNum + 1;
             }
 
         },
+        setAudioSpeed: (state, action) => {
+            state.audioSpeed = action.payload;
+        },
         resetState: () => initialState
     }
 })
 
-export const { generateAnswer, setUserGuess, resetState } = mainSlice.actions;
+export const { generateAnswer, setUserGuess, resetState, setAudioSpeed } = mainSlice.actions;
 
 export default mainSlice.reducer;

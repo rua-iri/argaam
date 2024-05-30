@@ -1,21 +1,20 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { saveSettings } from "../lib/utils";
-import { useRef } from "react";
 
 
 export default function Settings({ settingsRef }) {
 
     const dispatch = useDispatch();
 
-    const formRef = useRef();
-    
+    const audioSpeed = useSelector((state) => (state.main.audioSpeed));
+
+
     const audioSpeedArray = [0.8, 0.9, 1, 1.1, 1.2];
 
 
     // TODO: include components which allow the user to control some/all of the following
     // - number of rounds
     // - max number
-    // - voice speed
 
 
     // TODO: if the user clicks save then the values should be 
@@ -24,9 +23,6 @@ export default function Settings({ settingsRef }) {
 
 
 
-    // onSubmit={(values) => saveSettings(dispatch)}
-    // onSubmit={(event) => {const a = new FormData(event.target); console.log(a)}}
-    // onClick={(event) => saveSettings(dispatch, event)}
 
 
 
@@ -39,7 +35,7 @@ export default function Settings({ settingsRef }) {
                     Settings
                 </h3>
 
-                <form ref={formRef} onSubmit={(e) => {e.preventDefault; alert("rory you're a genius")}} >
+                <form method="dialog" onSubmit={(event) => { saveSettings(dispatch, event); }}>
 
                     <div className="divider"></div>
 
@@ -54,7 +50,7 @@ export default function Settings({ settingsRef }) {
                             max={audioSpeedArray[audioSpeedArray.length - 1]}
                             step={0.1}
                             name="audioSpeed"
-                            defaultValue={1}
+                            defaultValue={audioSpeed}
                         />
                         <div className="w-full flex justify-between text-xs px-2">
                             {audioSpeedArray.map((speed, index) => (
@@ -68,18 +64,18 @@ export default function Settings({ settingsRef }) {
 
                     <div className="divider"></div>
 
-                </form>
 
 
 
-
-                <div className="modal-action px-5">
-                    <form method="dialog">
-                        <button className="btn" onClick={() => formRef.current.submit()} >
+                    <div className="modal-action px-5">
+                        <button className="btn" type="button" onClick={() => settingsRef.current.close()}>
+                            Close
+                        </button>
+                        <button className="btn" type="submit" >
                             Save
                         </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </dialog>
 
