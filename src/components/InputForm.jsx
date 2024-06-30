@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserGuess } from "../app/mainSlice";
 import { TbVolume } from "react-icons/tb";
 import { IconContext } from "react-icons";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function InputForm() {
 
@@ -14,8 +14,17 @@ export default function InputForm() {
     const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
     const answer = useSelector((state) => state.main.answer);
     const audioSpeed = useSelector((state) => (state.main.audioSpeed));
+    const [inputValue, setInputValue] = useState();
 
     const fullPath = `/audio/${answer}.mp3`
+
+    function handleChange(value) {
+        const re = new RegExp("^[0-9\b]+$");
+
+        if (re.test(value) || value == '') {
+            setInputValue(value);
+        }
+    }
 
     function playAudio() {
         if (!answer) return;
@@ -40,6 +49,7 @@ export default function InputForm() {
         // console.log("User Answer: ", event.target.userAnswer.value);
 
         dispatch(setUserGuess(event.target.userAnswer.value));
+        setInputValue();
         formRef.current.reset();
         inputRef.current.focus();
     }
@@ -75,10 +85,12 @@ export default function InputForm() {
                                     name="userAnswer"
                                     maxLength={2}
                                     autoFocus
+                                    inputMode="numeric"
+                                    onChange={(e) => handleChange(e.target.value)}
+                                    value={inputValue}
                                     required />
                             </div>
                             <button
-                                // className="my-3 text-gray-900 ring-1 ring-gray-300 bg-limeGreen px-5 py-2.5 rounded-lg text-4xl font-light hover:bg-softYellow focus:bg-softYellow focus:ring-4 focus:outline-none focus:ring-red-50"
                                 className="btn btn-primary w-full"
                                 type="submit">
                                 Submit
