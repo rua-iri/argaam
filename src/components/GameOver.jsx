@@ -12,9 +12,9 @@ export default function GameOver({ gameOverRef }) {
         <>
             <dialog className="modal" ref={gameOverRef} >
                 <div className="modal-box text-center pt-0 px-0">
-                    <h3 className="font-bold text-xl py-3 bg-limeGreen">
+                    <h2 className="font-bold text-xl py-3 bg-limeGreen">
                         Game Over
-                    </h3>
+                    </h2>
                     <p className="py-6">
                         You scored: {rightAnswerCount} / {maxRoundCount-1}
                     </p>
@@ -23,6 +23,7 @@ export default function GameOver({ gameOverRef }) {
                             <button
                                 className="btn text-lg"
                                 onClick={() => resetGame(dispatch)}
+                                aria-label="Reset Game Button"
                             >
                                 Restart
                             </button>
