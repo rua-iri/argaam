@@ -29,12 +29,11 @@ export default function InputForm() {
     if (!answer) return;
     if (currentRoundNum >= maxRoundCount) return;
 
-    try {
-      audioRef.current.play();
-    } catch (error) {
-      console.error(error);
-      console.error("Audio playing Failed");
-    }
+    const playPromise = audioRef.current.play();
+
+    playPromise.catch((e) => {
+      console.log("Audio Autoplay failed");
+    });
   }
 
   function setPlaybackSpeed() {
@@ -50,8 +49,6 @@ export default function InputForm() {
       formRef.current.reset();
       return;
     }
-
-    // console.log("User Answer: ", event.target.userAnswer.value);
 
     dispatch(setUserGuess(event.target.userAnswer.value));
     setInputValue();
