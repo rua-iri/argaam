@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 import GameOver from './components/GameOver';
 import Settings from './components/Settings';
-import Toast from './components/Toast';
+// import Toast from './components/Toast';
 
 function App() {
 

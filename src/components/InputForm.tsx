@@ -17,7 +17,7 @@ export default function InputForm() {
 
   const fullPath = `/audio/${answer}.mp3`;
 
-  function handleChange(value) {
+  function handleChange(value: string) {
     const re = new RegExp("^[0-9\b]+$");
 
     if (re.test(value) || value == "") {
@@ -51,7 +51,7 @@ export default function InputForm() {
     }
 
     dispatch(setUserGuess(event.target.userAnswer.value));
-    setInputValue();
+    setInputValue(undefined);
     formRef.current.reset();
     inputRef.current.focus();
   }

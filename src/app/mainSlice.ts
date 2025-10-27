@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    answer: null,
+    answer: 0,
     userGuess: null,
     currentRoundNum: 1,
     maxRoundCount: 11,
