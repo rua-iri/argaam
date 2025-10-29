@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import "./App.css";
 import "./scss/styles.scss";
 import InputForm from "./components/InputForm";
-import { generateAnswer } from "./app/mainSlice";
+import { generateAnswer, setEndGameTime } from "./app/mainSlice";
 import Header from "./components/Header";
 import { useEffect, useRef } from "react";
 import Footer from "./components/Footer";
@@ -30,6 +30,7 @@ function App() {
 
   useEffect(() => {
     if (gameOverRef.current && currentRoundNum >= maxRoundCount) {
+      dispatch(setEndGameTime())
       gameOverRef.current.showModal();
     }
   }, [currentRoundNum]);
