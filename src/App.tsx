@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './App.css'
-// Import our custom CSS and JS
 import './scss/styles.scss'
 import InputForm from './components/InputForm';
 import { generateAnswer } from "./app/mainSlice";
@@ -10,17 +9,18 @@ import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 import GameOver from './components/GameOver';
 import Settings from './components/Settings';
+import { useAppSelector } from './app/hooks';
 // import Toast from './components/Toast';
 
 function App() {
 
   const dispatch = useDispatch();
-  const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
-  const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
-  const answer = useSelector((state) => state.main.answer);
+  const maxRoundCount = useAppSelector((state) => state.main.maxRoundCount);
+  const currentRoundNum = useAppSelector((state) => state.main.currentRoundNum);
+  const answer = useAppSelector((state) => state.main.answer);
 
-  const settingsRef = useRef();
-  const gameOverRef = useRef();
+  const settingsRef = useRef<HTMLDialogElement>(null); 
+  const gameOverRef = useRef<HTMLDialogElement>();
 
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (currentRoundNum >= maxRoundCount) {
+    if (gameOverRef.current && currentRoundNum >= maxRoundCount) {
       gameOverRef.current.showModal();
     }
   }, [currentRoundNum])

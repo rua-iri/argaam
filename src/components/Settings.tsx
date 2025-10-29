@@ -1,10 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveSettings } from "../lib/utils";
+import { useAppSelector } from "../app/hooks";
+import { forwardRef } from "react";
 
-export default function Settings({ settingsRef }) {
+
+
+export const SettingsDialog = forwardRef<HTMLDialogElement, {}>
+((_props, ref) => {
+  return (
+    <dialog className="modal" ref={ref}>
+      <p>Settings</p>
+    </dialog>
+  );
+});
+
+
+
+export default function Settings({settingsRef,}: {settingsRef: HTMLDialogElement}) {
   const dispatch = useDispatch();
 
-  const audioSpeed = useSelector((state) => state.main.audioSpeed);
+  const audioSpeed = useAppSelector((state) => state.main.audioSpeed);
 
   const audioSpeedArray = [0.8, 0.9, 1, 1.1, 1.2];
 
@@ -30,7 +45,12 @@ export default function Settings({ settingsRef }) {
           <div className="divider"></div>
 
           <div className="text-start px-5">
-            <label className="text-lg font-semibold" htmlFor="audioSpeedRangeInput">Voice Speed</label>
+            <label
+              className="text-lg font-semibold"
+              htmlFor="audioSpeedRangeInput"
+            >
+              Voice Speed
+            </label>
             <input
               type="range"
               className="range mt-5"

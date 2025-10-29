@@ -1,31 +1,21 @@
-
+import type { Dispatch } from "@reduxjs/toolkit";
 import { generateAnswer, resetState, setAudioSpeed } from "../app/mainSlice";
+import type { FormEvent } from "react";
+import type { AppDispatch } from "../app/store";
 
+export const resetGame = (dispatch: AppDispatch) => {
+  dispatch(resetState());
+  dispatch(generateAnswer());
+};
 
+export const saveSettings = (
+  dispatch: Dispatch,
+  event: FormEvent<HTMLFormElement>
+) => {
+  // event.preventDefault();
 
-export const resetGame = (dispatch) => {
-    dispatch(resetState())
-    dispatch(generateAnswer());
-}
+  const settingsData = new FormData(event.currentTarget);
+  console.log(settingsData);
 
-
-
-export const saveSettings = (dispatch, event) => {
-
-    // event.preventDefault();
-
-    const settingsData = new FormData(event.target);
-    console.log(settingsData);
-
-    dispatch(
-        setAudioSpeed(
-            settingsData.get("audioSpeed")
-        )
-    );
-
-    
-}
-
-
-
-
+  dispatch(setAudioSpeed(settingsData.get("audioSpeed")));
+};
