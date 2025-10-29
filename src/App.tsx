@@ -22,9 +22,9 @@ function App() {
   const gameOverRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (answer === null) {
+    // answer is only 0 on initialisation
+    if (answer === 0) {
       dispatch(generateAnswer());
-      // console.log(answer)
     }
   }, []);
 
