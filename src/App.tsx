@@ -20,7 +20,7 @@ function App() {
   const answer = useAppSelector((state) => state.main.answer);
 
   const settingsRef = useRef<HTMLDialogElement>(null); 
-  const gameOverRef = useRef<HTMLDialogElement>();
+  const gameOverRef = useRef<HTMLDialogElement>(null);
 
 
   useEffect(() => {

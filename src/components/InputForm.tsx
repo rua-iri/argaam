@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { setUserGuess } from "../app/mainSlice";
 import { TbVolume } from "react-icons/tb";
 import { IconContext } from "react-icons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useAppSelector } from "../app/hooks";
 
 export default function InputForm() {
@@ -35,6 +35,7 @@ export default function InputForm() {
     const playPromise = audioRef.current.play();
 
     playPromise.catch((e) => {
+      console.error(e)
       console.log("Audio Autoplay failed");
     });
   }
@@ -43,7 +44,7 @@ export default function InputForm() {
     if (audioRef.current) audioRef.current.playbackRate = audioSpeed;
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     // check that game is not over
@@ -53,10 +54,10 @@ export default function InputForm() {
       return;
     }
 
-    dispatch(setUserGuess(event.target.userAnswer.value));
+    dispatch(setUserGuess(event.currentTarget.userAnswer.value));
     setInputValue(undefined);
-    formRef.current.reset();
-    inputRef.current.focus();
+    formRef.current?.reset();
+    inputRef.current?.focus();
   }
 
   useEffect(() => {

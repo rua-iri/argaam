@@ -1,7 +1,12 @@
+import type { RefObject } from "react";
 import { IconContext } from "react-icons";
 import { TbSettings } from "react-icons/tb";
 
-export default function Header({ settingsRef }) {
+export default function Header({
+  settingsRef,
+}: {
+  settingsRef: RefObject<HTMLDialogElement>;
+}) {
   return (
     <div className="w-full py-3 border-b border-slate-600 text-center bg-limeGreen">
       <div className="flex justify-between items-center">
@@ -14,7 +19,7 @@ export default function Header({ settingsRef }) {
         <div className="mr-3 md:px-3 bg-splat3 bg-cover p-3">
           <button
             className="group"
-            onClick={() => settingsRef.current.showModal()}
+            onClick={() => settingsRef.current?.showModal()}
             aria-label="Open Settings Button"
           >
             <IconContext.Provider

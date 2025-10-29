@@ -1,22 +1,13 @@
 import { useDispatch } from "react-redux";
 import { saveSettings } from "../lib/utils";
 import { useAppSelector } from "../app/hooks";
-import { forwardRef } from "react";
+import { type RefObject } from "react";
 
-
-
-export const SettingsDialog = forwardRef<HTMLDialogElement, {}>
-((_props, ref) => {
-  return (
-    <dialog className="modal" ref={ref}>
-      <p>Settings</p>
-    </dialog>
-  );
-});
-
-
-
-export default function Settings({settingsRef,}: {settingsRef: HTMLDialogElement}) {
+export default function Settings({
+  settingsRef,
+}: {
+  settingsRef: RefObject<HTMLDialogElement>;
+}) {
   const dispatch = useDispatch();
 
   const audioSpeed = useAppSelector((state) => state.main.audioSpeed);
@@ -76,7 +67,7 @@ export default function Settings({settingsRef,}: {settingsRef: HTMLDialogElement
             <button
               className="btn"
               type="button"
-              onClick={() => settingsRef.current.close()}
+              onClick={() => settingsRef.current?.close()}
               aria-label="Close Without Saving"
             >
               Close

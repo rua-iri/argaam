@@ -1,8 +1,13 @@
 import { useDispatch } from "react-redux";
 import { resetGame } from "../lib/utils";
 import { useAppSelector } from "../app/hooks";
+import type { RefObject } from "react";
 
-export default function GameOver({ gameOverRef }) {
+export default function GameOver({
+  gameOverRef,
+}: {
+  gameOverRef: RefObject<HTMLDialogElement>;
+}) {
   const dispatch = useDispatch();
   const rightAnswerCount = useAppSelector(
     (state) => state.main.rightAnswerCount
