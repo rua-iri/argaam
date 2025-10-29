@@ -5,7 +5,7 @@ import { TbSettings } from "react-icons/tb";
 export default function Header({
   settingsRef,
 }: {
-  settingsRef: RefObject<HTMLDialogElement>;
+  settingsRef: RefObject<HTMLDialogElement | null>;
 }) {
   return (
     <div className="w-full py-3 border-b border-slate-600 text-center bg-limeGreen">

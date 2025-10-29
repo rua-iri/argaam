@@ -6,7 +6,7 @@ import { type RefObject } from "react";
 export default function Settings({
   settingsRef,
 }: {
-  settingsRef: RefObject<HTMLDialogElement>;
+  settingsRef: RefObject<HTMLDialogElement | null>;
 }) {
   const dispatch = useDispatch();
 

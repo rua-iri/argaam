@@ -6,7 +6,7 @@ import type { RefObject } from "react";
 export default function GameOver({
   gameOverRef,
 }: {
-  gameOverRef: RefObject<HTMLDialogElement>;
+  gameOverRef: RefObject<HTMLDialogElement | null>;
 }) {
   const dispatch = useDispatch();
   const rightAnswerCount = useAppSelector(
