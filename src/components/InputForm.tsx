@@ -35,7 +35,7 @@ export default function InputForm() {
     const playPromise = audioRef.current.play();
 
     playPromise.catch((e) => {
-      console.error(e)
+      console.error(e);
       console.log("Audio Autoplay failed");
     });
   }
@@ -88,7 +88,7 @@ export default function InputForm() {
             </IconContext.Provider>
           </button>
           <div className="m-3">
-            <form ref={formRef} onSubmit={(event) => handleSubmit(event)}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <input
                   ref={inputRef}
