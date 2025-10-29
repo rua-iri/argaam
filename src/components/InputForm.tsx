@@ -1,23 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserGuess } from "../app/mainSlice";
 import { TbVolume } from "react-icons/tb";
 import { IconContext } from "react-icons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useAppSelector } from "../app/hooks";
 
 export default function InputForm() {
   const dispatch = useDispatch();
-  const formRef = useRef();
-  const inputRef = useRef();
-  const audioRef = useRef();
-  const currentRoundNum = useSelector((state) => state.main.currentRoundNum);
-  const maxRoundCount = useSelector((state) => state.main.maxRoundCount);
-  const answer = useSelector((state) => state.main.answer);
-  const audioSpeed = useSelector((state) => state.main.audioSpeed);
-  const [inputValue, setInputValue] = useState();
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const currentRoundNum = useAppSelector((state) => state.main.currentRoundNum);
+  const maxRoundCount = useAppSelector((state) => state.main.maxRoundCount);
+  const answer = useAppSelector((state) => state.main.answer);
+  const audioSpeed = useAppSelector((state) => state.main.audioSpeed);
+  const [inputValue, setInputValue] = useState<string>();
 
   const fullPath = `/audio/${answer}.mp3`;
 
-  function handleChange(value) {
+  function handleChange(value: string) {
     const re = new RegExp("^[0-9\b]+$");
 
     if (re.test(value) || value == "") {
@@ -29,31 +30,34 @@ export default function InputForm() {
     if (!answer) return;
     if (currentRoundNum >= maxRoundCount) return;
 
+    if (!audioRef.current) throw Error("audioRef not defined");
+
     const playPromise = audioRef.current.play();
 
     playPromise.catch((e) => {
+      console.error(e);
       console.log("Audio Autoplay failed");
     });
   }
 
   function setPlaybackSpeed() {
-    audioRef.current.playbackRate = audioSpeed;
+    if (audioRef.current) audioRef.current.playbackRate = audioSpeed;
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     // check that game is not over
     if (currentRoundNum >= maxRoundCount) {
-      inputRef.current.disabled = true;
-      formRef.current.reset();
+      if (inputRef.current) inputRef.current.disabled = true;
+      if (formRef.current) formRef.current.reset();
       return;
     }
 
-    dispatch(setUserGuess(event.target.userAnswer.value));
-    setInputValue();
-    formRef.current.reset();
-    inputRef.current.focus();
+    dispatch(setUserGuess(event.currentTarget.userAnswer.value));
+    setInputValue(undefined);
+    formRef.current?.reset();
+    inputRef.current?.focus();
   }
 
   useEffect(() => {
@@ -84,7 +88,7 @@ export default function InputForm() {
             </IconContext.Provider>
           </button>
           <div className="m-3">
-            <form ref={formRef} onSubmit={(event) => handleSubmit(event)}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <input
                   ref={inputRef}

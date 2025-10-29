@@ -1,8 +1,8 @@
 export default function ScoreToast() {
   const isAnswerCorrect = true;
-  const answer = 123;
+  const answer = String(123);
 
-//   TODO: display toast for a number of seconds before deleting
+  //   TODO: display toast for a number of seconds before deleting
   return (
     <ToastElement
       toastColour={isAnswerCorrect ? "success" : "danger"}
@@ -11,7 +11,12 @@ export default function ScoreToast() {
   );
 }
 
-export function ToastElement({ toastColour, toastMessage }) {
+type ToastElementProps = {
+  toastColour: string;
+  toastMessage: string;
+};
+
+export function ToastElement({ toastColour, toastMessage }: ToastElementProps) {
   return (
     <div className="toast toast-top toast-center">
       <div className={`alert alert-${toastColour}`}>
