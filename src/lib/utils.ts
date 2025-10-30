@@ -20,6 +20,8 @@ export const saveSettings = (
   dispatch(setAudioSpeed(settingsData.get("audioSpeed")));
 };
 
+// These may or may not be used depending on whether I determine
+// that they are necessary
 export const checkIsExistingPlayer = (): boolean => {
   if (sessionStorage.getItem("isExistingPlayer") === "true") {
     return true;

@@ -1,8 +1,8 @@
 import { useEffect, type RefObject } from "react";
 import { IconContext } from "react-icons";
 import { PiGithubLogoDuotone } from "react-icons/pi";
-import { setStartGameTime } from "../app/mainSlice";
 import { useDispatch } from "react-redux";
+import { resetGame } from "../lib/utils";
 
 export default function StartMenu({
   startMenuRef,
@@ -16,7 +16,7 @@ export default function StartMenu({
   }, []);
 
   function handleStartGame() {
-    dispatch(setStartGameTime());
+    resetGame(dispatch);
   }
 
   return (

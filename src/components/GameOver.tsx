@@ -13,18 +13,21 @@ export default function GameOver({
     (state) => state.main.rightAnswerCount
   );
   const maxRoundCount = useAppSelector((state) => state.main.maxRoundCount);
-  const startTime = useAppSelector((state) => state.main.startTime)
-  const endTime = useAppSelector((state) => state.main.endTime)
+  const startTime = useAppSelector((state) => state.main.startTime);
+  const endTime = useAppSelector((state) => state.main.endTime);
 
   return (
     <dialog className="modal" ref={gameOverRef}>
       <div className="modal-box text-center pt-0 px-0">
         <h2 className="font-bold text-xl py-3 bg-limeGreen">Game Over</h2>
         <p className="my-6">
-          You scored: {rightAnswerCount} / {maxRoundCount - 1}
+          You scored:{" "}
+          <b>
+            {rightAnswerCount} / {maxRoundCount - 1}
+          </b>
         </p>
         <p className="my-4">
-          Game Time: {(endTime - startTime) / 1000} seconds
+          Game Time: <b>{(endTime - startTime) / 1000}</b> seconds
         </p>
         <div className="modal-action flex justify-center w-full">
           <form method="dialog">
