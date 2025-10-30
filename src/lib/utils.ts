@@ -19,3 +19,16 @@ export const saveSettings = (
 
   dispatch(setAudioSpeed(settingsData.get("audioSpeed")));
 };
+
+export const checkIsExistingPlayer = (): boolean => {
+  if (sessionStorage.getItem("isExistingPlayer") === "true") {
+    return true;
+  }
+
+  return false;
+};
+
+export const createExistingPlayer = (): void => {
+  sessionStorage.setItem("isExistingPlayer", "true");
+  sessionStorage.setItem("userFirstPlayed", String(new Date().getTime()));
+};

@@ -10,6 +10,7 @@ import ScoreBoard from "./components/ScoreBoard";
 import GameOver from "./components/GameOver";
 import Settings from "./components/Settings";
 import { useAppSelector } from "./app/hooks";
+import StartMenu from "./components/StartMenu";
 // import Toast from './components/Toast';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   const settingsRef = useRef<HTMLDialogElement>(null);
   const gameOverRef = useRef<HTMLDialogElement>(null);
+  const startMenuRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     // answer is only 0 on initialisation
@@ -51,6 +53,8 @@ function App() {
       {/* <div className='my-3 text-center text-red-600'>{answer}</div> */}
 
       <Footer />
+
+      <StartMenu startMenuRef={startMenuRef} />
 
       <GameOver gameOverRef={gameOverRef} />
 

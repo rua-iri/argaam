@@ -35,6 +35,9 @@ export const mainSlice = createSlice({
     setAudioSpeed: (state, action) => {
       state.audioSpeed = action.payload;
     },
+    setStartGameTime: (state) => {
+      state.startTime = new Date().getTime();
+    },
     setEndGameTime: (state) => {
       state.endTime = new Date().getTime();
     },
@@ -47,6 +50,7 @@ export const {
   setUserGuess,
   resetState,
   setAudioSpeed,
+  setStartGameTime,
   setEndGameTime,
 } = mainSlice.actions;
 
