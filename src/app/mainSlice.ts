@@ -35,6 +35,14 @@ export const mainSlice = createSlice({
     setAudioSpeed: (state, action) => {
       state.audioSpeed = action.payload;
     },
+    setMaxRoundCount: (state, action) => {
+      const userMaxRounds: number = Number(action.payload);
+
+      state.maxRoundCount = userMaxRounds + 1;
+    },
+    setMaxAnswer: (state, action) => {
+      state.maxAnswer = action.payload;
+    },
     setStartGameTime: (state) => {
       state.startTime = new Date().getTime();
     },
@@ -50,6 +58,8 @@ export const {
   setUserGuess,
   resetState,
   setAudioSpeed,
+  setMaxRoundCount,
+  setMaxAnswer,
   setStartGameTime,
   setEndGameTime,
 } = mainSlice.actions;

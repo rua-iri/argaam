@@ -11,8 +11,11 @@ export default function Settings({
   const dispatch = useDispatch();
 
   const audioSpeed = useAppSelector((state) => state.main.audioSpeed);
+  const maxRoundCount = useAppSelector((state) => state.main.maxRoundCount);
+  const maxAnswer = useAppSelector((state) => state.main.maxAnswer);
 
-  const audioSpeedArray = [0.8, 0.9, 1, 1.1, 1.2];
+  const audioSpeedOptions = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+  const numberRoundsOptions = [5, 10, 20, 50];
 
   // TODO: include components which allow the user to control some/all of the following
   // - number of rounds
@@ -45,20 +48,68 @@ export default function Settings({
             <input
               type="range"
               className="range mt-5"
-              min={audioSpeedArray[0]}
-              max={audioSpeedArray[audioSpeedArray.length - 1]}
-              step={0.1}
+              min={audioSpeedOptions[0]}
+              max={audioSpeedOptions[audioSpeedOptions.length - 1]}
+              step={0.25}
               name="audioSpeed"
               defaultValue={audioSpeed}
               id="audioSpeedRangeInput"
             />
             <div className="w-full flex justify-between text-xs px-2">
-              {audioSpeedArray.map((speed, index) => (
+              {audioSpeedOptions.map((speed, index) => (
                 <span key={index} className="text-center font-bold">
                   |<div>{speed}x</div>
                 </span>
               ))}
             </div>
+          </div>
+
+          <div className="divider"></div>
+
+          <div className="text-start px-5">
+            <h3 className="text-lg font-semibold">Max Round Number</h3>
+            <fieldset>
+              <div className="flex justify-center gap-7">
+                {numberRoundsOptions.map((numberRounds, index) => (
+                  <div className="flex">
+                    <label
+                      className="mx-1"
+                      htmlFor={`numberRounds-${numberRounds}`}
+                    >
+                      {numberRounds}
+                    </label>
+                    <input
+                      className="radio"
+                      key={index}
+                      type="radio"
+                      name="numberRounds"
+                      id={`numberRounds-${numberRounds}`}
+                      defaultChecked={numberRounds + 1 === maxRoundCount}
+                      value={numberRounds}
+                    />
+                  </div>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+
+          <div className="divider"></div>
+
+          <div className="text-start px-5">
+            <label className="text-lg font-semibold block" htmlFor="maxAnswerInput">
+              Highest Number
+            </label>
+            <input
+              className="input border border-black"
+              type="number"
+              name="maxAnswer"
+              id="maxAnswerInput"
+              placeholder="Enter a Number between 5 and 99"
+              min={5}
+              max={99}
+              defaultValue={maxAnswer}
+              aria-label="Max Number Input"
+            />
           </div>
 
           <div className="divider"></div>
@@ -79,34 +130,5 @@ export default function Settings({
         </form>
       </div>
     </dialog>
-
-    // <div className="absolute z-20 top-0 w-screen h-screen backdrop-blur-md">
-    //         <div className="flex h-screen">
-    //             <div className="m-auto">
-    //                 <div className='flex justify-center my-20 bg-white'>
-    //                     <div className='flex-col items-center justify-center border border-slate-300 rounded-md'>
-    //                         <div className="flex justify-center mb-12 border-b border-slate-300 bg-limeGreenpx-20 py-5">
-    //                             Game Over
-    //                         </div>
-
-    //                         <div className="px-20 pb-10">
-    //                             <div className="flex-none">
-    //                                 <div className="mb-10">
-    //                                     You scored:
-    //                                 </div>
-    //                                 <div>
-    //                                     <button
-    //                                         className="py-2 px-4 bg-softOrange rounded-md border border-slate-300"
-    //                                         onClick={() => alert("Close Settings")}>
-    //                                         Close
-    //                                     </button>
-    //                                 </div>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
   );
 }

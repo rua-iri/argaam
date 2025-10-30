@@ -1,5 +1,11 @@
 import type { Dispatch } from "@reduxjs/toolkit";
-import { generateAnswer, resetState, setAudioSpeed } from "../app/mainSlice";
+import {
+  generateAnswer,
+  resetState,
+  setAudioSpeed,
+  setMaxAnswer,
+  setMaxRoundCount,
+} from "../app/mainSlice";
 import type { FormEvent } from "react";
 import type { AppDispatch } from "../app/store";
 
@@ -15,9 +21,10 @@ export const saveSettings = (
   // event.preventDefault();
 
   const settingsData = new FormData(event.currentTarget);
-  console.log(settingsData);
 
   dispatch(setAudioSpeed(settingsData.get("audioSpeed")));
+  dispatch(setMaxRoundCount(settingsData.get("numberRounds")));
+  dispatch(setMaxAnswer(settingsData.get("maxAnswer")));
 };
 
 // These may or may not be used depending on whether I determine
