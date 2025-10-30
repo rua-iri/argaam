@@ -38,11 +38,16 @@ export const mainSlice = createSlice({
     setEndGameTime: (state) => {
       state.endTime = new Date().getTime();
     },
-    resetState: () => initialState,
+    resetState: () => ({ ...initialState, startTime: new Date().getTime() }),
   },
 });
 
-export const { generateAnswer, setUserGuess, resetState, setAudioSpeed, setEndGameTime } =
-  mainSlice.actions;
+export const {
+  generateAnswer,
+  setUserGuess,
+  resetState,
+  setAudioSpeed,
+  setEndGameTime,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;
